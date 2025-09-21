@@ -1,90 +1,96 @@
-# AI Pool Guard Demo
+# Smart Pool Safety System – Real-Time Drowning Alert 🏊‍♀️🚨
 
-This repository contains a demo for a smart video-based pool safety system. The goal is to detect and alert on unsafe behavior of children near or inside a swimming pool using computer vision and basic simulation techniques.
-
-## 📊 Project Overview
-
-This demo simulates two possible safety scenarios:
-
-1. **Walking Near the Pool (Supervision Alert)**:
-   - A child walks around the pool unsupervised.
-   - The system detects the presence and sends an alert before an accident can occur.
-
-2. **In-Water Distress (Drowning Alert)**:
-   - A doll (representing a child) moves irregularly and then stops, simulating drowning.
-   - The system analyzes motion patterns and raises an alert if distress is detected.
-
-## 🔧 Features
-
-- Simulation of video scenarios using `OpenCV`.
-- Region of Interest (ROI) editor for focusing on the pool area.
-- Alert sound generator using `playsound`.
-- Custom detection logic for movement and inactivity.
-- Ready for future integration with real camera feeds or AI models.
-
-## 🌂 Folder Structure
-
-```
-project-folder/
-├── generate_distress_video.py     # Script to generate distress video
-├── edit_roi_interactive.py       # Tool for editing the ROI polygon
-├── detect_person_roi.py          # Main alert logic over video input
-├── doll.png / doll_2.png         # Doll sprite with transparency
-├── roi_doll.json                # Saved polygon coordinates
-├── alert.wav                    # Audio alert to play
-└── doll_distress.mp4             # Generated video of the pool scenario
-```
-
-## 🔢 How to Run
-
-1. **Create Video**:
-
-```bash
-python generate_distress_video.py
-```
-
-2. **Define Pool Region (Optional)**:
-
-```bash
-python edit_roi_interactive.py
-```
-
-3. **Run Main Detection System**:
-
-```bash
-python detect_person_roi.py
-```
-
-You should see the video running and alerts triggered when needed.
-
-## ⚠️ Requirements
-
-- Python 3.8+
-- OpenCV
-- NumPy
-- playsound
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-(You can create this file manually with required libraries.)
-
-## 🔍 Next Steps
-
-- [ ] Add second scenario (walking near pool)
-- [ ] Improve detection logic using AI (optional)
-- [ ] Package into Streamlit app / GUI
-- [ ] Upload to GitHub with proper README and license
-
-## 🌟 Credits
-
-Created by Yisca Biton for an educational AI safety project.
-All images used are AI-generated or licensed for demo purposes.
+An AI-powered safety system designed to **prevent drowning incidents** near swimming pools.  
+The system detects when a child approaches or remains in a restricted pool area, and also aims to **identify early signs of drowning** based on motion and behavior analysis.
 
 ---
 
-🚀 Ready for integration with edge devices or AI models in the future.
+## Project Goals
+- Prevent child access to pool areas without supervision
+- Detect abnormal behavior such as **lack of movement**, **lingering in the pool**, or **distress**
+- Trigger immediate alerts to enable rapid response
+- Serve as an accessible and affordable software-based safety solution
 
+---
+
+## Features
+- YOLO-based object detection to identify people near the pool
+- Real-time video feed processing
+- Configurable **Region of Interest (ROI)** for danger zone
+- Audio alert (e.g. siren) when a person enters the ROI
+- Motion behavior analysis to detect possible drowning signs (planned/ongoing)
+- Easy integration and customization
+
+---
+
+## How it Works
+
+Define the pool ROI (Region of Interest):
+
+Option 1 – Auto detection:
+Using auto_water_detector.py, the system automatically detects water regions (e.g. pool) based on color segmentation and saves them into pool_roi.json.
+
+Option 2 – Manual selection (optional):
+Using edit_roi_interactive.py, you can manually draw the ROI on the camera feed and save it as roi_child.json.
+
+Run main detection script:
+Start live video monitoring with poolwatch_main.py, which loads the defined ROI from the JSON file.
+
+The system continuously checks for:
+
+Person entering the ROI → triggers alert
+
+Lack of movement or abnormal patterns → flagged for future drowning detection logic
+
+Plays alert sound via distress_alert.wav
+
+---
+
+## Tech Stack
+- Python 3.x
+- OpenCV
+- Numpy
+- YOLO (weights/model not included)
+- JSON for storing ROI configuration
+- Simpleaudio for audio playback
+
+---
+
+## Project Structure
+
+```
+project-folder/
+├── poolwatch_main.py              # Script to generate distress video
+├── detect_person_roi.py            # Person detection logic
+├── edit_roi_interactive.py        # Tool to define ROI
+├── requirements.txt               # Python dependencies
+├── README.md                      # Project documentation
+├── alert.wav                    # Audio alert to play
+└── demo/record_poolWatch1.mp4       # Live screen recording demo          
+
+```
+##  Demo Video
+A short screen recording of the system running live, detecting a child near the pool and triggering alerts:
+[Click here to watch the demo](./demo/record_poolWatch1.mp4)
+
+
+---
+
+## Disclaimer
+Some core logic and the full drowning behavior model are intentionally omitted due to potential commercial development.  
+Full demo and implementation details available upon request.
+
+---
+
+## Contact
+For questions, collaboration or demo access:  
+[yb0533144497@gmail.com]
+[LinkedIn Profile](https://www.linkedin.com/in/yisca-biton-638932228/)
+
+---
+
+## Created By
+Yisca Biton – Embedded & System Engineer  
+This project was fully designed and developed as part of a personal initiative to explore AI-based safety systems.  
+
+© 2025 Yisca Biton. All rights reserved.

@@ -71,7 +71,7 @@ project-folder/
 ```
 ##  Demo Video
 A short screen recording of the system running live, detecting a child near the pool and triggering alerts:
-[Click here to watch the demo](./demo/record_pool.mp4)
+[Click here to watch the demo](https://drive.google.com/file/d/1A09DTsH2lh4wXWf6YJGeBMQ-ZNe9DXwX/view?usp=sharing)
 
 
 ---
